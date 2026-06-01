@@ -103,19 +103,21 @@ Magic link format: `{{MAGIC_LINK_URL}}` (to be provided by engineering — this 
 
 For now, use the schedule URL: `https://app.constantcontact.com/pages/campaigns/view/schedule/campaignId/{campaign_id}`
 
-**6. Create the email in CC at this point** (not before). This is when the API call fires:
+**6. Create the email in CC at this point** (not before). Use the `mcp__ctct__createEmailCampaignUsingPOST` MCP tool directly — do NOT use the Python scripts:
 
-```bash
-python3 scripts/create-email.py \
-  --name "Campaign Name" \
-  --subject "Subject Line" \
-  --preheader "Preheader text" \
-  --from-name "Agent Name" \
-  --from-email "{{FROM_EMAIL}}" \
-  --html /tmp/listing-email.html
+```
+mcp__ctct__createEmailCampaignUsingPOST(
+  name="Just Listed: [address]",
+  email_campaign_activities=[{
+    format_type: 5,
+    subject: "[subject line]",
+    preheader: "[preheader]",
+    html_content: "[full HTML with [[trackingImage]]]"
+  }]
+)
 ```
 
-The script reads the OAuth token from `.cc-token.json` (managed by `scripts/cc-auth.sh`).
+The MCP tool handles auth automatically via the Bearer token configured in `.mcp.json`. Do not use `scripts/create-email.py` or `scripts/cc-auth.sh` — those call the CC API directly and will 401.
 
 ---
 

@@ -24,7 +24,8 @@ if [ "$1" = "refresh" ] && [ -f "$TOKEN_FILE" ]; then
     if echo "$RESPONSE" | python3 -c "import sys,json; json.load(sys.stdin)['access_token']" 2>/dev/null; then
       echo "$RESPONSE" > "$TOKEN_FILE"
       echo "Token refreshed successfully."
-      echo "Access token: $(python3 -c "import json; print(json.load(open('$TOKEN_FILE'))['access_token'][:50])...")
+      ACCESS_PREVIEW=$(python3 -c "import json; print(json.load(open('$TOKEN_FILE'))['access_token'][:50])")
+      echo "Access token: ${ACCESS_PREVIEW}..."
       exit 0
     else
       echo "Refresh failed, running full flow..."
@@ -67,7 +68,8 @@ if echo "$RESPONSE" | python3 -c "import sys,json; json.load(sys.stdin)['access_
   echo "$RESPONSE" > "$TOKEN_FILE"
   echo ""
   echo "Token saved to $TOKEN_FILE"
-  echo "Expires in: $(python3 -c "import json; print(json.load(open('$TOKEN_FILE')).get('expires_in', 'unknown'))") seconds"
+  EXPIRES=$(python3 -c "import json; print(json.load(open('$TOKEN_FILE')).get('expires_in', 'unknown'))")
+  echo "Expires in: $EXPIRES seconds"
   echo "Done."
 else
   echo "ERROR: Token exchange failed"
