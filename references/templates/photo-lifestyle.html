@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{SUBJECT_LINE}}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#ede8e1;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  [[trackingImage]]
+  <!-- Preheader: renders as preview text in inbox — treat as a second subject line -->
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">{{PREHEADER_TEXT}}</div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ede8e1;">
+    <tr>
+      <td align="center" style="padding:28px 16px;">
+
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border-radius:16px;overflow:hidden;">
+
+          <!-- Hero image — full-width, no padding -->
+          <tr>
+            <td style="padding:0;line-height:0;font-size:0;">
+              <img src="{{HERO_IMAGE_URL}}" width="600" style="display:block;width:100%;max-width:600px;height:auto;" alt="{{ADDRESS}}" />
+            </td>
+          </tr>
+
+          <!-- Just Listed + Price + Address — immediately below hero -->
+          <tr>
+            <td style="padding:28px 36px 0;">
+              <p style="margin:0 0 10px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#e85d26;">Just Listed</p>
+              <p style="margin:0;font-size:34px;font-weight:800;color:#2a2420;line-height:1.05;letter-spacing:-0.5px;">{{PRICE}}</p>
+              <p style="margin:8px 0 0;font-size:18px;font-weight:600;color:#2a2420;line-height:1.3;">{{ADDRESS}}</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#9c8c7a;">{{CITY}}, {{STATE}} {{ZIP}}</p>
+            </td>
+          </tr>
+
+          <!-- Specs card -->
+          <tr>
+            <td style="padding:20px 36px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f4f0;border-radius:12px;">
+                <tr>
+                  <td style="padding:16px 24px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td align="center" width="25%">
+                          <p style="margin:0;font-size:20px;font-weight:700;color:#2a2420;">{{BEDS}}</p>
+                          <p style="margin:3px 0 0;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#9c8c7a;">Beds</p>
+                        </td>
+                        <td align="center" width="25%">
+                          <p style="margin:0;font-size:20px;font-weight:700;color:#2a2420;">{{BATHS}}</p>
+                          <p style="margin:3px 0 0;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#9c8c7a;">Baths</p>
+                        </td>
+                        <td align="center" width="25%">
+                          <p style="margin:0;font-size:20px;font-weight:700;color:#2a2420;">{{SQFT}}</p>
+                          <p style="margin:3px 0 0;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#9c8c7a;">Sq Ft</p>
+                        </td>
+                        <td align="center" width="25%">
+                          <p style="margin:0;font-size:20px;font-weight:700;color:#2a2420;">{{LOT_SIZE}}</p>
+                          <p style="margin:3px 0 0;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#9c8c7a;">Lot</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA #1 — above fold; min 44px touch target -->
+          <tr>
+            <td style="padding:20px 36px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="background-color:#2a2420;border-radius:10px;">
+                    <a href="{{CTA_URL}}" style="display:block;padding:18px 16px;text-align:center;font-size:15px;font-weight:700;letter-spacing:0.5px;color:#ffffff;text-decoration:none;">Schedule Your Tour</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Description — 2-3 sentences, lead with best feature -->
+          <tr>
+            <td style="padding:24px 36px 0;">
+              <p style="margin:0;font-size:15px;line-height:1.85;color:#4a3f36;">{{DESCRIPTION}}</p>
+            </td>
+          </tr>
+
+          <!-- Photo grid (optional — remove entire block if no additional photos)
+               Supports 2-8 photos in a 2-column grid; add rows as needed -->
+          {{PHOTO_GRID}}
+          <!--
+          <tr>
+            <td style="padding:20px 36px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="49%" style="padding:0 4px 8px 0;line-height:0;font-size:0;">
+                    <img src="PHOTO_URL" width="254" style="display:block;width:100%;height:auto;border-radius:8px;" alt="Property photo" />
+                  </td>
+                  <td width="2%"></td>
+                  <td width="49%" style="padding:0 0 8px 4px;line-height:0;font-size:0;">
+                    <img src="PHOTO_URL" width="254" style="display:block;width:100%;height:auto;border-radius:8px;" alt="Property photo" />
+                  </td>
+                </tr>
+                <!-- repeat <tr> for each additional pair of photos -->
+              </table>
+            </td>
+          </tr>
+          -->
+
+          <!-- Highlights — 2-col grid with dot indicators -->
+          <tr>
+            <td style="padding:20px 36px 0;">
+              <p style="margin:0 0 14px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:#2a2420;">What's Included</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                {{HIGHLIGHTS_GRID}}
+                <!-- 2-col grid format (pair highlights in rows):
+                <tr>
+                  <td width="48%" style="padding:8px 0;font-size:13px;color:#4a3f36;border-bottom:1px solid #f0ebe4;">
+                    <span style="display:inline-block;width:6px;height:6px;background-color:#e85d26;border-radius:50%;margin-right:8px;vertical-align:middle;"></span>Feature text
+                  </td>
+                  <td width="4%"></td>
+                  <td width="48%" style="padding:8px 0;font-size:13px;color:#4a3f36;border-bottom:1px solid #f0ebe4;">
+                    <span style="display:inline-block;width:6px;height:6px;background-color:#c4b09c;border-radius:50%;margin-right:8px;vertical-align:middle;"></span>Feature text
+                  </td>
+                </tr>
+                -->
+              </table>
+            </td>
+          </tr>
+
+          <!-- Open house callout (optional — remove entire block if no open house)
+               Place ABOVE photos so it's visible without scrolling on mobile -->
+          {{OPEN_HOUSE_BLOCK}}
+          <!--
+          <tr>
+            <td style="padding:20px 36px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#2a2420;border-radius:12px;">
+                <tr>
+                  <td style="padding:20px 24px;">
+                    <p style="margin:0;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#e85d26;">Open House</p>
+                    <p style="margin:6px 0 0;font-size:22px;font-weight:700;color:#ffffff;">{{OPEN_HOUSE_DATE}} &nbsp;·&nbsp; {{OPEN_HOUSE_TIME}}</p>
+                    <p style="margin:4px 0 0;font-size:13px;color:#9c8c7a;">{{ADDRESS}}, {{CITY}}, {{STATE}}</p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;">
+                      <tr>
+                        <td style="background-color:#e85d26;border-radius:8px;">
+                          <a href="{{DIRECTIONS_URL}}" style="display:inline-block;padding:11px 20px;font-size:12px;font-weight:700;color:#ffffff;text-decoration:none;letter-spacing:0.5px;">Get Directions</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          -->
+
+          <!-- CTA #2 — repeated below all content -->
+          <tr>
+            <td style="padding:20px 36px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="background-color:#e85d26;border-radius:10px;">
+                    <a href="{{CTA_URL}}" style="display:block;padding:18px 16px;text-align:center;font-size:15px;font-weight:700;letter-spacing:0.5px;color:#ffffff;text-decoration:none;">See All Photos + Details</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Agent card — headshot optional -->
+          <tr>
+            <td style="padding:0 36px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f4f0;border-radius:12px;">
+                <tr>
+                  <td style="padding:18px 20px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td valign="middle" style="width:68px;padding-right:14px;">
+                          {{AGENT_HEADSHOT_IMG}}
+                          <!-- Headshot format (optional — remove td content if no URL):
+                          <img src="{{AGENT_HEADSHOT_URL}}" width="52" height="52" style="display:block;width:52px;height:52px;border-radius:50%;" alt="{{AGENT_NAME}}" />
+                          -->
+                        </td>
+                        <td valign="middle">
+                          <p style="margin:0;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#9c8c7a;">Your Agent</p>
+                          <p style="margin:5px 0 0;font-size:15px;font-weight:700;color:#2a2420;">{{AGENT_NAME}}</p>
+                          <p style="margin:3px 0 0;font-size:12px;color:#6b5c4e;"><a href="tel:{{AGENT_PHONE}}" style="color:#2a2420;text-decoration:none;">{{AGENT_PHONE}}</a> &middot; <a href="mailto:{{AGENT_EMAIL}}" style="color:#e85d26;text-decoration:none;">Email</a></p>
+                          <p style="margin:2px 0 0;font-size:10px;color:#9c8c7a;">License: {{AGENT_LICENSE}}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+
+        <!-- CAN-SPAM Footer (CC system placeholders — resolved at send time) -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f5f5;margin-top:20px;">
+          <tr>
+            <td align="center" style="padding:16px 0;">
+              <table style="width:580px;" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="color:#5d5d5d;font-family:Verdana,Geneva,sans-serif;font-size:12px;padding:4px 0;">
+                    {{AGENT_BUSINESS_ADDRESS}}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="color:#5d5d5d;font-family:Verdana,Geneva,sans-serif;font-size:12px;padding:4px 0;">
+                    <a href="{{ view_in_browser }}" target="_blank" rel="noopener nofollow" style="color:#5d5d5d;text-decoration:underline;">View email in browser</a>
+                    &nbsp;&nbsp;
+                    <a href="{{ update_preferences }}" target="_blank" rel="noopener nofollow" style="color:#5d5d5d;text-decoration:underline;">Update your preferences</a>
+                    &nbsp;or&nbsp;
+                    <a href="{{ unsubscribe }}" target="_blank" rel="noopener nofollow" style="color:#5d5d5d;text-decoration:underline;">unsubscribe</a>.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

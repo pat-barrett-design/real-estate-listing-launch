@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{SUBJECT_LINE}}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#fafafa;font-family:'Georgia',Times,'Times New Roman',serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  [[trackingImage]]
+  <!-- Preheader: renders as preview text in inbox — treat as a second subject line -->
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">{{PREHEADER_TEXT}}</div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#fafafa;">
+    <tr>
+      <td align="center" style="padding:40px 16px;">
+
+        <table role="presentation" width="580" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;">
+
+          <!-- Masthead — editorial newspaper style -->
+          <tr>
+            <td style="padding:24px 40px;border-bottom:2px solid #1a1a1a;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td>
+                    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:#1a1a1a;">New Listing</p>
+                  </td>
+                  <td align="right">
+                    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;color:#999999;letter-spacing:1px;">{{CITY}}, {{STATE}}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Hero image — full-width, flush to edges -->
+          <tr>
+            <td style="padding:0;line-height:0;font-size:0;">
+              <img src="{{HERO_IMAGE_URL}}" width="580" style="display:block;width:100%;max-width:580px;height:auto;" alt="{{ADDRESS}}" />
+            </td>
+          </tr>
+
+          <!-- Price + Address — immediately below hero, price dominant -->
+          <tr>
+            <td style="padding:32px 40px 0;">
+              <p style="margin:0;font-size:40px;font-weight:400;color:#1a1a1a;font-family:'Georgia',Times,serif;line-height:1.0;">{{PRICE}}</p>
+              <p style="margin:10px 0 0;font-size:20px;font-weight:400;color:#1a1a1a;font-family:'Georgia',Times,serif;line-height:1.3;">{{ADDRESS}}</p>
+              <p style="margin:5px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#888888;">{{CITY}}, {{STATE}} {{ZIP}}</p>
+            </td>
+          </tr>
+
+          <!-- Specs — ruled, compact -->
+          <tr>
+            <td style="padding:20px 40px;border-bottom:1px solid #e8e8e8;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="font-family:Arial,Helvetica,sans-serif;padding-right:28px;">
+                    <span style="font-size:17px;font-weight:600;color:#1a1a1a;">{{BEDS}}</span>
+                    <span style="font-size:10px;color:#999999;margin-left:4px;text-transform:uppercase;letter-spacing:1px;">bed</span>
+                  </td>
+                  <td style="font-family:Arial,Helvetica,sans-serif;padding-right:28px;border-left:1px solid #e8e8e8;padding-left:28px;">
+                    <span style="font-size:17px;font-weight:600;color:#1a1a1a;">{{BATHS}}</span>
+                    <span style="font-size:10px;color:#999999;margin-left:4px;text-transform:uppercase;letter-spacing:1px;">bath</span>
+                  </td>
+                  <td style="font-family:Arial,Helvetica,sans-serif;border-left:1px solid #e8e8e8;padding-left:28px;">
+                    <span style="font-size:17px;font-weight:600;color:#1a1a1a;">{{SQFT}}</span>
+                    <span style="font-size:10px;color:#999999;margin-left:4px;text-transform:uppercase;letter-spacing:1px;">sqft</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA #1 — above fold; full-width for mobile touch target -->
+          <tr>
+            <td style="padding:28px 40px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="background-color:#1a1a1a;">
+                    <a href="{{CTA_URL}}" style="display:block;padding:18px 16px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#ffffff;text-decoration:none;text-align:center;">Schedule Your Tour</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Description — short, 2-3 sentences -->
+          <tr>
+            <td style="padding:28px 40px 0;">
+              <p style="margin:0;font-size:16px;line-height:1.85;color:#333333;">{{DESCRIPTION}}</p>
+            </td>
+          </tr>
+
+          <!-- Highlights — left-border bullets, scannable -->
+          <tr>
+            <td style="padding:20px 40px 0;">
+              {{HIGHLIGHTS_LIST}}
+              <!-- Each item format:
+              <p style="margin:0 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#555555;padding-left:16px;border-left:3px solid #1a1a1a;">Feature text</p>
+              -->
+            </td>
+          </tr>
+
+          <!-- Photo grid (optional — remove entire block if no additional photos)
+               Supports 2-8 photos in a 2-column grid; add rows as needed -->
+          {{PHOTO_GRID}}
+          <!--
+          <tr>
+            <td style="padding:24px 40px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="49%" style="padding:0 4px 8px 0;line-height:0;font-size:0;">
+                    <img src="PHOTO_URL" width="235" style="display:block;width:100%;height:auto;" alt="Property photo" />
+                  </td>
+                  <td width="2%"></td>
+                  <td width="49%" style="padding:0 0 8px 4px;line-height:0;font-size:0;">
+                    <img src="PHOTO_URL" width="235" style="display:block;width:100%;height:auto;" alt="Property photo" />
+                  </td>
+                </tr>
+                <!-- repeat <tr> for each additional pair of photos -->
+              </table>
+            </td>
+          </tr>
+          -->
+
+          <!-- Open house callout (optional — remove entire block if no open house)
+               Place ABOVE photos so it's visible without scrolling on mobile -->
+          {{OPEN_HOUSE_BLOCK}}
+          <!--
+          <tr>
+            <td style="padding:24px 40px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:2px solid #1a1a1a;">
+                <tr>
+                  <td style="padding:20px 24px;">
+                    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#888888;">Open House</p>
+                    <p style="margin:6px 0 0;font-size:24px;font-weight:400;color:#1a1a1a;font-family:'Georgia',Times,serif;">{{OPEN_HOUSE_DATE}} &nbsp;·&nbsp; {{OPEN_HOUSE_TIME}}</p>
+                    <p style="margin:4px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#666666;">{{ADDRESS}}</p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;">
+                      <tr>
+                        <td style="border:2px solid #1a1a1a;">
+                          <a href="{{DIRECTIONS_URL}}" style="display:inline-block;padding:11px 20px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#1a1a1a;text-decoration:none;">Get Directions</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          -->
+
+          <!-- CTA #2 — repeated below all content -->
+          <tr>
+            <td style="padding:28px 40px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="background-color:#1a1a1a;">
+                    <a href="{{CTA_URL}}" style="display:block;padding:18px 16px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#ffffff;text-decoration:none;text-align:center;">See All Photos + Details</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Agent footer — headshot optional -->
+          <tr>
+            <td style="padding:28px 40px 32px;border-top:1px solid #e8e8e8;margin-top:24px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td valign="middle" style="width:72px;padding-right:16px;">
+                    {{AGENT_HEADSHOT_IMG}}
+                    <!-- Headshot format (optional — remove td content if no URL):
+                    <img src="{{AGENT_HEADSHOT_URL}}" width="56" height="56" style="display:block;width:56px;height:56px;border-radius:50%;" alt="{{AGENT_NAME}}" />
+                    -->
+                  </td>
+                  <td valign="middle">
+                    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;color:#1a1a1a;">{{AGENT_NAME}}</p>
+                    <p style="margin:4px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#888888;"><a href="tel:{{AGENT_PHONE}}" style="color:#1a1a1a;text-decoration:none;">{{AGENT_PHONE}}</a> &middot; <a href="mailto:{{AGENT_EMAIL}}" style="color:#888888;text-decoration:none;">Email</a></p>
+                    <p style="margin:2px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#aaaaaa;">License: {{AGENT_LICENSE}}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+
+        <!-- CAN-SPAM Footer (CC system placeholders — resolved at send time) -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f5f5;margin-top:24px;">
+          <tr>
+            <td align="center" style="padding:16px 0;">
+              <table style="width:560px;" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="color:#5d5d5d;font-family:Verdana,Geneva,sans-serif;font-size:12px;padding:4px 0;">
+                    {{AGENT_BUSINESS_ADDRESS}}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="color:#5d5d5d;font-family:Verdana,Geneva,sans-serif;font-size:12px;padding:4px 0;">
+                    <a href="{{ view_in_browser }}" target="_blank" rel="noopener nofollow" style="color:#5d5d5d;text-decoration:underline;">View email in browser</a>
+                    &nbsp;&nbsp;
+                    <a href="{{ update_preferences }}" target="_blank" rel="noopener nofollow" style="color:#5d5d5d;text-decoration:underline;">Update your preferences</a>
+                    &nbsp;or&nbsp;
+                    <a href="{{ unsubscribe }}" target="_blank" rel="noopener nofollow" style="color:#5d5d5d;text-decoration:underline;">unsubscribe</a>.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
