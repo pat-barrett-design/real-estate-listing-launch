@@ -1,0 +1,13 @@
+{
+  "name": "real-estate-listing-launch",
+  "version": "6.0.0",
+  "description": "Takes an MLS listing and produces a coordinated TikTok ad campaign and Constant Contact email blast. Just say 'I just listed a property' with your MLS ID.",
+  "author": "Constant Contact",
+  "skills": [
+    {
+      "name": "real-estate-listing-launch",
+      "description": "Launch a new real estate listing with email + TikTok ad",
+      "path": "SKILL.md"
+    }
+  ]
+}
