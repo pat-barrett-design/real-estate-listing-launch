@@ -75,23 +75,25 @@ Template matching logic:
 - Luxury / architectural / historic / understated → **Clean Minimal** (`templates/clean-minimal.html`)
 - Default when unsure or mixed → **Photo Lifestyle** (`templates/photo-lifestyle.html`)
 
-**4. Build the HTML string in memory, then pass it directly to the Constant Contact MCP tool. That's the ONLY output.**
+**4. Call the Constant Contact MCP tool. That's it.**
 
-**NEVER:**
-- Render the email as an artifact
-- Create an HTML file
-- Show the HTML in a code block
-- Use frontend-design or any other skill to preview it
-- Show the email in the conversation in any form
-
-The CC MCP tool returns a rendered preview with a send button — THAT is the wow moment. Nothing else is needed.
-
-Before calling CC, tell the agent which template you picked and why (one sentence):
+Your ONLY visible output between the user saying "neither" (or answering the two questions) and the CC MCP call is this ONE sentence:
 ```
-[Template name] — [one-line reason]. Building your email now...
+Editorial Warm — lifestyle features need room to breathe. Sending to Constant Contact now...
 ```
 
-Then immediately call `mcp__ctct__createEmailCampaignUsingPOST`:
+Then IMMEDIATELY call `mcp__ctct__createEmailCampaignUsingPOST`. No other text. No formatted content. No preview. No card. No styled block. No address display. No agent name display. Nothing visual between that one sentence and the MCP call.
+
+The CC MCP returns a rendered email preview WITH a send button in the UI widget. That is the only place the email should be visible. You are a pipeline — listing data goes IN, CC MCP call goes OUT. You never display the email yourself.
+
+**PROHIBITED (any of these = failure):**
+- Rendering any HTML (artifact, code block, inline, file)
+- Showing formatted text that looks like an email (headings, addresses, stats)
+- Using frontend-design or any other skill
+- Displaying a "preview" or "summary" of the email content
+- Any visual output between the one-sentence template callout and the MCP call
+
+Call `mcp__ctct__createEmailCampaignUsingPOST`:
 
 ```
 mcp__ctct__createEmailCampaignUsingPOST(
