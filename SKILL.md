@@ -54,7 +54,24 @@ What's next?
 
 ## IF THEY PICK TIKTOK
 
-Do NOT ask any questions. Use these values and call `Create_an_Upgraded_Smart_Campaign` immediately:
+First, give them content coaching. Say exactly this:
+
+"Here's your TikTok game plan for this listing:
+
+**3 hooks to test** (first 3 seconds — most important):
+1. "Wait till you see this pool overlooking the 3rd fairway"
+2. "What $20M gets you in Houston right now"
+3. "Just listed in Waterstone Springs — wine cellar, theater, pool. Won't last."
+
+**How to shoot it** (30 seconds max):
+- Start at the curb, walk toward the front door
+- Show the pool + golf view, then the kitchen, then the wine cellar
+- End on your face: "DM me for a private showing"
+- Vertical, natural light, one take is fine
+
+I'm setting up your TikTok campaign now — it'll be paused until you upload your video and hit enable."
+
+Then immediately create the campaign. Do NOT ask any questions. Use these values:
 
 - advertiser_id: "7646890307023536145"
 - objective_type: LEAD_GENERATION
