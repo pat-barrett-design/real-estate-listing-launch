@@ -50,34 +50,76 @@ For demos, invoke via: `use this skill: https://github.com/pat-barrett-design/re
 
 **1. Get the listing data using this fallback chain (stop at the first method that works):**
 
-**Method A — SimplyRETS demo API (works for demo IDs only):**
+**Method A — Demo fixture (instant, no network needed):**
+
+If the MLS ID is `1005192`, use this data immediately — do NOT run any script or search:
+
+```
+Address: 74434 East Sweet Bottom Br #18393
+City: Houston, TX 77096
+Price: $20,714,261
+Status: Active
+
+Property Details:
+  Bedrooms: 2
+  Bathrooms: 5 full, 6 half
+  Sqft: 9,316
+  Stories: 3
+  Year Built: 2015
+  Style: Contemporary/Modern
+  Lot Size: 0.35 acres
+  Garage: 3 spaces
+
+Neighborhood:
+  Subdivision: Waterstone Springs
+  Market Area: Briargrove Park/Walnutbend
+  County: Harris
+
+Key Features:
+  - Private pool
+  - Golf course view
+  - Island kitchen
+  - Covered patio/deck
+  - Fireplace
+  - Wine cellar
+  - Home theater
+
+Photos: 38 available
+Hero Image (exterior): https://images.simplyrets.com/properties/1005192/photo1.jpg
+Interior Image: https://images.simplyrets.com/properties/1005192/photo2.jpg
+
+MLS ID: 1005192
+Agent: Shoshana Phelps
+```
+
+**Method B — SimplyRETS demo API (other demo IDs):**
 ```
 python3 scripts/fetch-listing.py --id <mlsId>
 ```
 Or by address: `python3 scripts/fetch-listing.py "address"`
 
-This is a fixed demo dataset. Known working IDs: `1005192` (default demo). Run `python3 scripts/fetch-listing.py --list` to see all available demo listings. If the ID is NOT in this dataset, the script will fail with exit code 1 — this is expected. Move to Method B immediately.
+If the script fails for ANY reason → move to Method C immediately.
 
-**Method B — Web search (works for real MLS IDs):**
+**Method C — Web search (real MLS IDs):**
 
-If Method A fails for ANY reason (404, network error, exit code 1), search the web using this sequence — try each query until you get listing data:
+Search the web using this sequence — stop at the first query that returns listing data:
 
 1. `"MLS [number]" property listing` (broad match)
-2. `"[number]" site:realtor.com OR site:zillow.com OR site:redfin.com` (major portals)
-3. `"[number]" site:homes.com OR site:movoto.com OR site:compass.com` (secondary portals)
-4. If the user provided an address, search: `"[full address]" for sale`
+2. `"[number]" site:realtor.com OR site:zillow.com OR site:redfin.com`
+3. `"[number]" site:homes.com OR site:movoto.com OR site:compass.com`
+4. If address provided: `"[full address]" for sale`
 
-Extract: address, price, beds/baths, sqft, lot size, year built, key features, and photo URLs. Photo URLs from Zillow/Realtor.com are valid image URLs — capture the first exterior shot as Hero Image and an interior as Interior Image.
+Extract: address, price, beds/baths, sqft, lot size, year built, key features, photo URLs. Capture first exterior shot as Hero Image, an interior shot as Interior Image.
 
-**Method C — Ask the user:**
+**Method D — Ask the user:**
 
-Only if BOTH methods fail → ask the user to paste listing details. Frame it as the fastest path:
+Only if all above fail:
 ```
 I couldn't pull up MLS #[number] from public sources — it may be on a restricted board. 
 Fastest option: paste me the key details (address, price, beds/baths, standout features) and I'll build your email right now.
 ```
 
-**CRITICAL: Never invent listing data.** If you cannot find the listing, do NOT proceed with made-up details. Ask the user. Every address, price, bed/bath count, and photo URL must come from a real source.
+**CRITICAL: Never invent listing data** outside of the Method A demo fixture above.
 - Capture `Hero Image (exterior)` and `Interior Image` URLs from output
 
 **2. Only after you have the listing data: confirm you see the property in one short sentence, then ask the two follow-up questions.**
