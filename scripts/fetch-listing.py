@@ -23,6 +23,7 @@ PASSWORD = "simplyrets"
 
 def make_request(endpoint, params=None):
     """Make authenticated request to SimplyRETS API."""
+    import urllib.error
     url = f"{API_BASE}{endpoint}"
     if params:
         url += "?" + urllib.parse.urlencode(params)
@@ -31,8 +32,17 @@ def make_request(endpoint, params=None):
     req = urllib.request.Request(url)
     req.add_header("Authorization", f"Basic {credentials}")
 
-    with urllib.request.urlopen(req) as response:
-        return json.loads(response.read().decode())
+    try:
+        with urllib.request.urlopen(req) as response:
+            return json.loads(response.read().decode())
+    except urllib.error.HTTPError as e:
+        print(f"LISTING NOT FOUND: HTTP {e.code} from SimplyRETS for {endpoint}")
+        print("FALLBACK: Use web search to find this listing by MLS ID or address.")
+        sys.exit(1)
+    except urllib.error.URLError as e:
+        print(f"NETWORK ERROR: {e.reason}")
+        print("FALLBACK: Use web search to find this listing by MLS ID or address.")
+        sys.exit(1)
 
 
 def format_listing(listing):

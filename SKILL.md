@@ -33,17 +33,25 @@ TikTok is Step 2 and only comes up after the email is sent.
 
 ## The Flow
 
+### Demo note
+For demos, invoke via: `use this skill: https://github.com/pat-barrett-design/real-estate-listing-launch for this: MLS ID [id]` — this loads the skill's full context including templates from GitHub. The `/real-estate-listing-launch` slash command loads the skill but may not have access to the GitHub-hosted templates.
+
+---
+
 ### STEP 1 — Fetch Listing
 
-**1. Get the listing data**
-- MLS ID: `python3 scripts/fetch-listing.py --id <mlsId>`
-- Address: `python3 scripts/fetch-listing.py "address"`
-- Pasted text: extract everything directly
+**1. Get the listing data — in this order:**
+1. Try the script: `python3 scripts/fetch-listing.py --id <mlsId>` (or address variant)
+2. If the script fails (403, network block, error) → **search the web** for the MLS ID or address. Do NOT ask the user to paste details — find it yourself.
+3. Only if web search also fails → ask the user to paste the listing info
+
+**CRITICAL: Never invent listing data.** If the script is blocked and web search returns nothing, do NOT proceed with made-up details. Ask the user. Every address, price, bed/bath count, and photo URL must come from a real source.
 - Capture `Hero Image (exterior)` and `Interior Image` URLs from output
 
-**2. Confirm you see the property — one short sentence proving you read the listing.**
+**2. Only after you have the listing data: confirm you see the property in one short sentence, then ask the two follow-up questions.**
 
-Then ask exactly 2 follow-up questions in one message:
+Do NOT ask the two questions until you have confirmed the listing. Never combine "I couldn't find it" with the two questions in the same message.
+
 ```
 Got it — [one sentence about the property using a standout feature].
 
@@ -57,7 +65,7 @@ Wait for their answer before proceeding.
 
 ---
 
-### STEP 2 — Match Template + Preview
+### STEP 2 — Match Template + Build
 
 **3. Pick the best template based on listing character.** Don't ask — just choose and explain why in one line. Keep the others in your back pocket.
 
@@ -67,43 +75,23 @@ Template matching logic:
 - Luxury / architectural / historic / understated → **Clean Minimal** (`templates/clean-minimal.html`)
 - Default when unsure or mixed → **Photo Lifestyle** (`templates/photo-lifestyle.html`)
 
-**4. Render the email fully in the conversation.** Show a complete HTML preview (as an artifact in claude.ai, or rendered locally in CLI). This is the wow moment — the agent needs to SEE their listing looking professional before anything else happens.
+**4. Build the HTML string in memory, then pass it directly to the Constant Contact MCP tool. That's the ONLY output.**
 
-Present it like:
+**NEVER:**
+- Render the email as an artifact
+- Create an HTML file
+- Show the HTML in a code block
+- Use frontend-design or any other skill to preview it
+- Show the email in the conversation in any form
+
+The CC MCP tool returns a rendered preview with a send button — THAT is the wow moment. Nothing else is needed.
+
+Before calling CC, tell the agent which template you picked and why (one sentence):
 ```
-Here's your listing email — I went with [template name] because [one reason].
-
-[rendered preview]
-
-Want to see a different style? I've got [X] other designs ready. Otherwise let's get this sent.
-```
-
-Do NOT create the email in Constant Contact yet. Do NOT mention accounts, login, or setup. Just show the beautiful email.
-
----
-
-### STEP 3 — Nudge to Send
-
-**5. Once the agent approves the email (or doesn't ask for changes), nudge them toward sending it.**
-
-The nudge should feel natural, not salesy. Emphasize the value of getting it out fast:
-```
-This is ready to go. Want to send it to your list right now?
-
-Constant Contact gets 98% deliverability — meaning this actually lands in inboxes, not spam folders. One click and your contacts see it today.
-
-[Send this email →]
+[Template name] — [one-line reason]. Building your email now...
 ```
 
-The `[Send this email →]` link should be the magic link that:
-- **Existing CC users:** Login → lands on schedule screen with email loaded
-- **New users:** Sign up for trial → lands on same schedule screen with email loaded
-
-Magic link format: `{{MAGIC_LINK_URL}}` (to be provided by engineering — this is the deep link that loads the pre-built email into the user's account and drops them on the schedule page)
-
-For now, use the schedule URL: `https://app.constantcontact.com/pages/campaigns/view/schedule/campaignId/{campaign_id}`
-
-**6. Create the email in CC at this point** (not before). Use the `mcp__ctct__createEmailCampaignUsingPOST` MCP tool directly — do NOT use the Python scripts:
+Then immediately call `mcp__ctct__createEmailCampaignUsingPOST`:
 
 ```
 mcp__ctct__createEmailCampaignUsingPOST(
@@ -118,6 +106,30 @@ mcp__ctct__createEmailCampaignUsingPOST(
 ```
 
 The MCP tool handles auth automatically via the Bearer token configured in `.mcp.json`. Do not use `scripts/create-email.py` or `scripts/cc-auth.sh` — those call the CC API directly and will 401.
+
+**HTML encoding rule:** Fill all template variables with literal text — never HTML-encode characters. Use `&` not `&amp;`, use `✓` not `&#10003;`. This prevents double-encoding in the CC preview.
+
+---
+
+### STEP 3 — Nudge to Send
+
+**5. Once CC confirms the campaign was created, present the result and nudge them toward sending.**
+
+The nudge should feel natural, not salesy. Emphasize speed-to-market:
+```
+Your listing email is live in Constant Contact. 🏡
+
+Subject: [subject line]
+Preheader: [preheader]
+
+[Schedule it to send →](https://app.constantcontact.com/pages/campaigns/view/schedule/campaignId/{campaign_id})
+
+Want a different style? I've got [X] other templates ready. Otherwise hit that link and your contacts see it today.
+```
+
+The schedule link format: `https://app.constantcontact.com/pages/campaigns/view/schedule/campaignId/{campaign_id}`
+
+Magic link (future — engineering to provide): `{{MAGIC_LINK_URL}}` — deep link that loads the pre-built email and drops new/existing users on the schedule page.
 
 ---
 
@@ -309,6 +321,7 @@ Rules: under 100 characters, casual tone, phone-shot energy. Never corporate.
 
 ## What you never do
 
+- **NEVER fabricate or hallucinate listing data.** Every detail in the email (address, price, beds, baths, features, photos) must come from a verified source: the fetch script, web search results, or user-provided text. If you cannot confirm data from a real source, ask the user to paste the listing details. Do NOT use training data, memory, or "I know this is a demo property" assumptions. Wrong listing data sent to an agent's contact list is catastrophic.
 - Launch anything without explicit approval
 - Show account setup before the email preview
 - Suggest targeting that violates Fair Housing
@@ -317,4 +330,4 @@ Rules: under 100 characters, casual tone, phone-shot energy. Never corporate.
 - Hard-sell account creation — show value first, connect naturally
 - Overwhelm with options — one recommendation, let them adjust
 - Jump to TikTok before the email is sent
-- Create the email in CC before the user has seen and approved the preview
+- Create the email in CC before the user has approved the template choice
