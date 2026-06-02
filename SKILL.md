@@ -48,20 +48,19 @@ For demos, invoke via: `use this skill: https://github.com/pat-barrett-design/re
 
 ### STEP 1 — Fetch Listing
 
-**1. Get the listing data — web search is the primary method:**
+**1. Get the listing data:**
 
-Search the web for the MLS number. MLS data IS publicly indexed — Zillow, Homes.com, Realtor.com, Redfin all show it. Try these searches in order:
-1. `"MLS 226019553" site:homes.com OR site:zillow.com OR site:realtor.com`
-2. `MLS 226019553 listing`
-3. `"226019553" real estate`
+Primary method — run the fetch script:
+```
+python3 scripts/fetch-listing.py --id <mlsId>
+```
+Or by address: `python3 scripts/fetch-listing.py "address"`
 
-If searching by address: `"1698 Bryden Rd" Columbus OH listing`
+This hits the SimplyRETS demo API. The demo dataset uses MLS ID `1005192` as the default demo listing.
 
-Do NOT say "MLS data isn't publicly available" — it is. Try at least 3 different search queries before concluding you can't find it.
+If the script fails (network block, 403) → **search the web** for the MLS number or address. Try `"MLS [number]" site:homes.com OR site:zillow.com` and similar queries.
 
-**Fallback (testing only):** `python3 scripts/fetch-listing.py --id <mlsId>` — this hits SimplyRETS demo API which only has fake listings. Do not use it for real MLS numbers.
-
-Only if ALL searches fail → ask the user to paste the listing info.
+Only if both fail → ask the user to paste the listing info.
 
 **CRITICAL: Never invent listing data.** If you cannot find the listing, do NOT proceed with made-up details. Ask the user. Every address, price, bed/bath count, and photo URL must come from a real source.
 - Capture `Hero Image (exterior)` and `Interior Image` URLs from output
