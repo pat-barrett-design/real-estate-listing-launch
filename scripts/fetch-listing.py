@@ -36,12 +36,13 @@ def make_request(endpoint, params=None):
         with urllib.request.urlopen(req) as response:
             return json.loads(response.read().decode())
     except urllib.error.HTTPError as e:
-        print(f"LISTING NOT FOUND: HTTP {e.code} from SimplyRETS for {endpoint}")
-        print("FALLBACK: Use web search to find this listing by MLS ID or address.")
+        print(f"NOT IN DEMO DATA: HTTP {e.code} — MLS ID not found in SimplyRETS demo dataset.")
+        print("This is expected for real MLS IDs. The demo dataset only contains ~10 sample listings.")
+        print("FALLBACK: Search the web for this MLS ID on realtor.com, zillow.com, redfin.com, or homes.com.")
         sys.exit(1)
     except urllib.error.URLError as e:
         print(f"NETWORK ERROR: {e.reason}")
-        print("FALLBACK: Use web search to find this listing by MLS ID or address.")
+        print("FALLBACK: Search the web for this MLS ID on realtor.com, zillow.com, redfin.com, or homes.com.")
         sys.exit(1)
 
 

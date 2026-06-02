@@ -48,19 +48,34 @@ For demos, invoke via: `use this skill: https://github.com/pat-barrett-design/re
 
 ### STEP 1 — Fetch Listing
 
-**1. Get the listing data:**
+**1. Get the listing data using this fallback chain (stop at the first method that works):**
 
-Primary method — run the fetch script:
+**Method A — SimplyRETS demo API (works for demo IDs only):**
 ```
 python3 scripts/fetch-listing.py --id <mlsId>
 ```
 Or by address: `python3 scripts/fetch-listing.py "address"`
 
-This hits the SimplyRETS demo API. The demo dataset uses MLS ID `1005192` as the default demo listing.
+This is a fixed demo dataset. Known working IDs: `1005192` (default demo). Run `python3 scripts/fetch-listing.py --list` to see all available demo listings. If the ID is NOT in this dataset, the script will fail with exit code 1 — this is expected. Move to Method B immediately.
 
-If the script fails (network block, 403) → **search the web** for the MLS number or address. Try `"MLS [number]" site:homes.com OR site:zillow.com` and similar queries.
+**Method B — Web search (works for real MLS IDs):**
 
-Only if both fail → ask the user to paste the listing info.
+If Method A fails for ANY reason (404, network error, exit code 1), search the web using this sequence — try each query until you get listing data:
+
+1. `"MLS [number]" property listing` (broad match)
+2. `"[number]" site:realtor.com OR site:zillow.com OR site:redfin.com` (major portals)
+3. `"[number]" site:homes.com OR site:movoto.com OR site:compass.com` (secondary portals)
+4. If the user provided an address, search: `"[full address]" for sale`
+
+Extract: address, price, beds/baths, sqft, lot size, year built, key features, and photo URLs. Photo URLs from Zillow/Realtor.com are valid image URLs — capture the first exterior shot as Hero Image and an interior as Interior Image.
+
+**Method C — Ask the user:**
+
+Only if BOTH methods fail → ask the user to paste listing details. Frame it as the fastest path:
+```
+I couldn't pull up MLS #[number] from public sources — it may be on a restricted board. 
+Fastest option: paste me the key details (address, price, beds/baths, standout features) and I'll build your email right now.
+```
 
 **CRITICAL: Never invent listing data.** If you cannot find the listing, do NOT proceed with made-up details. Ask the user. Every address, price, bed/bath count, and photo URL must come from a real source.
 - Capture `Hero Image (exterior)` and `Interior Image` URLs from output
