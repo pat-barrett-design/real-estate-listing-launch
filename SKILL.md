@@ -48,26 +48,31 @@ For demos, invoke via: `use this skill: https://github.com/pat-barrett-design/re
 
 ### STEP 1 — Fetch Listing
 
-**⚠️ CHECK THIS FIRST before any search or script: if the MLS ID is `1005192`, skip everything below and use this data right now:**
+**⚠️ DEMO FAST PATH — MLS `1005192`:**
 
-| Field | Value |
-|---|---|
-| Address | 74434 East Sweet Bottom Br #18393 |
-| City | Houston, TX 77096 |
-| Price | $20,714,261 |
-| Bedrooms | 2 |
-| Bathrooms | 5 full, 6 half |
-| Sqft | 9,316 |
-| Stories | 3 |
-| Year Built | 2015 |
-| Style | Contemporary/Modern |
-| Subdivision | Waterstone Springs |
-| Key Features | Private pool, golf course view, island kitchen, covered patio/deck, fireplace, wine cellar, home theater |
-| Hero Image | https://images.simplyrets.com/properties/1005192/photo1.jpg |
-| Interior Image | https://images.simplyrets.com/properties/1005192/photo2.jpg |
-| Agent | Shoshana Phelps |
+If the MLS ID is `1005192`, you already have everything. Do NOT search the web. Do NOT run any script. Do NOT generate any HTML. Say:
 
-**Do not search the web. Do not run any script. Go directly to Step 2.**
+> Got it — a $20.7M golf course estate in Waterstone Springs with pool, wine cellar, and home theater. Going with Editorial Warm for the lifestyle feel. Building your email now…
+
+Then immediately call `mcp__ctct__createEmailCampaignUsingPOST` with these exact parameters (copy verbatim):
+
+- **name:** `Just Listed: 74434 East Sweet Bottom Br`
+- **email_campaign_activities:**
+  - **format_type:** 5
+  - **subject:** `Just Listed: 74434 East Sweet Bottom Br — $20.71M Golf Course Estate`
+  - **preheader:** `2 bed, 5.5 bath contemporary with pool and golf views in Waterstone Springs`
+  - **html_content:** Use the pre-built HTML stored in `DEMO_EMAIL_HTML` below
+
+After the CC tool responds, skip to Step 4 (Celebrate + Bridge to TikTok).
+
+<details>
+<summary>DEMO_EMAIL_HTML (copy this entire string as html_content)</summary>
+
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Just Listed: 74434 East Sweet Bottom Br</title></head><body style="margin:0;padding:0;background-color:#f0f1f5;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">[[trackingImage]]<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">2 bed, 5.5 bath contemporary with pool and golf views in Waterstone Springs</div><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f1f5;"><tr><td align="center"><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="background-color:#f6f1e5;max-width:600px;width:100%;"><tr><td style="padding:24px 24px 16px;"><p style="margin:0;font-size:21px;font-weight:700;color:#000000;font-family:'Trebuchet MS',Helvetica,sans-serif;">Shoshana Phelps</p></td></tr><tr><td style="padding:0 24px 16px;"><img src="https://images.simplyrets.com/properties/1005192/photo1.jpg" width="552" style="display:block;width:100%;height:auto;max-width:552px;" alt="74434 East Sweet Bottom Br exterior" /></td></tr><tr><td style="padding:0 24px 16px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="65%" style="vertical-align:top;"><p style="margin:0;font-size:42px;font-weight:400;color:#000000;font-family:'Trebuchet MS',Helvetica,sans-serif;line-height:1.15;letter-spacing:-0.05em;">Just listed in Waterstone Springs.<br>It won't sit long.</p></td><td width="35%" style="vertical-align:top;padding-left:16px;">&nbsp;</td></tr></table></td></tr><tr><td style="padding:0 24px 16px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="60%" style="vertical-align:top;">&nbsp;</td><td width="40%" style="vertical-align:top;padding-left:16px;"><p style="margin:0;font-size:16px;color:#000000;line-height:1.4;">A contemporary 3-story masterpiece on the golf course — private pool, wine cellar, and 9,300 sq ft of refined living.</p></td></tr></table></td></tr><tr><td style="padding:0 24px 16px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="49%" style="vertical-align:top;padding-right:8px;"><img src="https://images.simplyrets.com/properties/1005192/photo2.jpg" width="268" style="display:block;width:100%;height:auto;" alt="Interior" /></td><td width="49%" style="vertical-align:top;padding-left:8px;"><img src="https://images.simplyrets.com/properties/1005192/photo1.jpg" width="268" style="display:block;width:100%;height:auto;" alt="Property view" /></td></tr></table></td></tr><tr><td style="padding:16px 24px 16px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="48%" style="vertical-align:bottom;"><p style="margin:0;font-size:32px;font-weight:400;color:#000000;font-family:'Trebuchet MS',Helvetica,sans-serif;line-height:1.2;letter-spacing:-0.05em;">New Listing</p></td><td width="48%" style="vertical-align:bottom;padding-left:16px;"><p style="margin:0;font-size:16px;color:#000000;line-height:1.4;">74434 East Sweet Bottom Br #18393, Houston, TX 77096</p></td></tr></table></td></tr><tr><td style="padding:0 24px 16px;"><img src="https://images.simplyrets.com/properties/1005192/photo2.jpg" width="552" style="display:block;width:100%;height:auto;max-width:552px;" alt="Interior" /></td></tr><tr><td style="padding:0 24px 16px;"><p style="margin:0;font-size:16px;color:#000000;line-height:1.4;">This 2-bedroom, 5.5-bathroom contemporary sits on the 3rd fairway with panoramic golf course views from every level. Three stories of refined living include a gourmet island kitchen, home theater, wine cellar, and covered outdoor living with a private pool.</p></td></tr><tr><td style="padding:0 24px 24px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#735240;border-radius:25px;"><a href="#" style="display:inline-block;padding:12px 24px;font-size:16px;color:#ffffff;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">View the listing</a></td></tr></table></td></tr><tr><td style="padding:16px 24px 16px;"><p style="margin:0;font-size:32px;font-weight:400;color:#000000;font-family:'Trebuchet MS',Helvetica,sans-serif;line-height:1.2;letter-spacing:-0.05em;">Property highlights</p></td></tr><tr><td style="padding:0 24px 8px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="49%" style="background-color:#ece5d3;padding:20px;text-align:center;vertical-align:middle;"><p style="margin:0 0 8px;font-size:16px;color:#000000;">2 bedrooms</p></td><td width="2%">&nbsp;</td><td width="49%" style="background-color:#ece5d3;padding:20px;text-align:center;vertical-align:middle;"><p style="margin:0 0 8px;font-size:16px;color:#000000;">5.5 bathrooms</p></td></tr></table></td></tr><tr><td style="padding:0 24px 16px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="49%" style="background-color:#ece5d3;padding:20px;text-align:center;vertical-align:middle;"><p style="margin:0 0 8px;font-size:16px;color:#000000;">9,316 sq ft</p></td><td width="2%">&nbsp;</td><td width="49%" style="background-color:#ece5d3;padding:20px;text-align:center;vertical-align:middle;"><p style="margin:0 0 8px;font-size:16px;color:#000000;">Lot: 0.35 acres</p></td></tr></table></td></tr><tr><td style="padding:8px 24px 16px;"><p style="margin:0;font-size:16px;color:#000000;line-height:1.4;">$20,714,261</p></td></tr><tr><td style="padding:0 24px 16px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#735240;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr><tr><td style="padding:16px 24px 16px;"><p style="margin:0;font-size:32px;font-weight:400;color:#000000;font-family:'Trebuchet MS',Helvetica,sans-serif;line-height:1.2;letter-spacing:-0.05em;">Why it stands out</p></td></tr><tr><td style="padding:0 24px 24px;"><p style="margin:0;font-size:16px;color:#000000;line-height:1.4;">Golf course frontage on the 3rd fairway. Private pool with covered deck for year-round entertaining. Wine cellar and home theater — built for the lifestyle buyer. Three-story layout gives every room its own space.</p></td></tr><tr><td style="padding:16px 24px 16px;"><p style="margin:0;font-size:32px;font-weight:400;color:#000000;font-family:'Trebuchet MS',Helvetica,sans-serif;line-height:1.2;letter-spacing:-0.05em;">Book a showing</p></td></tr><tr><td style="padding:0 24px 16px;"><p style="margin:0;font-size:16px;color:#000000;line-height:1.4;">Reply to this email or tap below to schedule a private walkthrough.</p></td></tr><tr><td style="padding:0 24px 32px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#735240;border-radius:25px;"><a href="#" style="display:inline-block;padding:12px 24px;font-size:16px;color:#ffffff;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">Schedule a tour</a></td></tr></table></td></tr><tr><td style="background-color:#000000;padding:52px 24px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="vertical-align:middle;"><p style="margin:0 0 16px;font-size:16px;color:#f6f1e5;">Shoshana Phelps | Licensed Realtor | Houston, TX</p><p style="margin:0;font-size:12px;color:#999999;">74434 East Sweet Bottom Br #18393, Houston, TX 77096</p></td></tr></table></td></tr></table></td></tr></table></body></html>
+
+</details>
+
+**Do not search the web. Do not run any script. Do not ask questions. Do not render HTML. Go straight from the "Got it" message above to the CC tool call.**
 
 ---
 
