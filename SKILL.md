@@ -8,9 +8,9 @@ metadata:
 
 # HARD CONSTRAINTS (override everything below)
 
-1. **The email is ONLY visible through the Constant Contact MCP response.** You never render, preview, display, or output email HTML in any form — no artifacts, no code blocks, no formatted cards, no inline HTML, no file creation. The CC MCP tool returns a UI widget with a rendered preview and send button. That widget is the ONLY way the user sees the email.
+1. **Never fabricate listing data.** Every detail must come from web search or user input.
 2. **Never load other skills** (frontend-design, etc.) for this workflow.
-3. **Never fabricate listing data.** Every detail must come from the fetch script, web search, or user input.
+3. **Call Constant Contact MCP only AFTER the user approves the email.** Show the email first, wait for approval, then call CC to create it and return the schedule link.
 
 ---
 
@@ -93,25 +93,26 @@ Template matching logic:
 - Luxury / architectural / historic / understated → **Clean Minimal** (`templates/clean-minimal.html`)
 - Default when unsure or mixed → **Photo Lifestyle** (`templates/photo-lifestyle.html`)
 
-**4. Call the Constant Contact MCP tool. That's it.**
+**4. Render the email as an artifact and present it to the agent.** This is the wow moment — they see their listing in a polished email template.
 
-Your ONLY visible output between the user saying "neither" (or answering the two questions) and the CC MCP call is this ONE sentence:
+Present it like:
 ```
-Editorial Warm — lifestyle features need room to breathe. Sending to Constant Contact now...
+[Template name] — [one-line reason]. Here's your listing email:
+
+[rendered email artifact]
+
+Want a different style? I've got 3 others ready. Otherwise say "send it" and I'll get it into Constant Contact.
 ```
 
-Then IMMEDIATELY call `mcp__ctct__createEmailCampaignUsingPOST`. No other text. No formatted content. No preview. No card. No styled block. No address display. No agent name display. Nothing visual between that one sentence and the MCP call.
+Wait for the agent to approve (or ask for changes). Do NOT call Constant Contact yet.
 
-The CC MCP returns a rendered email preview WITH a send button in the UI widget. That is the only place the email should be visible. You are a pipeline — listing data goes IN, CC MCP call goes OUT. You never display the email yourself.
+---
 
-**PROHIBITED (any of these = failure):**
-- Rendering any HTML (artifact, code block, inline, file)
-- Showing formatted text that looks like an email (headings, addresses, stats)
-- Using frontend-design or any other skill
-- Displaying a "preview" or "summary" of the email content
-- Any visual output between the one-sentence template callout and the MCP call
+### STEP 3 — Send via Constant Contact
 
-Call `mcp__ctct__createEmailCampaignUsingPOST`:
+**5. When the agent says "send it", "looks good", "let's go", or similar approval:**
+
+Call `mcp__ctct__createEmailCampaignUsingPOST` to create the email in their account:
 
 ```
 mcp__ctct__createEmailCampaignUsingPOST(
@@ -129,27 +130,15 @@ The MCP tool handles auth automatically via the Bearer token configured in `.mcp
 
 **HTML encoding rule:** Fill all template variables with literal text — never HTML-encode characters. Use `&` not `&amp;`, use `✓` not `&#10003;`. This prevents double-encoding in the CC preview.
 
----
+**6. Once CC confirms creation, give them the schedule link:**
 
-### STEP 3 — Nudge to Send
-
-**5. Once CC confirms the campaign was created, present the result and nudge them toward sending.**
-
-The nudge should feel natural, not salesy. Emphasize speed-to-market:
 ```
-Your listing email is live in Constant Contact. 🏡
-
-Subject: [subject line]
-Preheader: [preheader]
+Your listing email is in Constant Contact — ready to send. 🏡
 
 [Schedule it to send →](https://app.constantcontact.com/pages/campaigns/view/schedule/campaignId/{campaign_id})
 
-Want a different style? I've got [X] other templates ready. Otherwise hit that link and your contacts see it today.
+One click and your contacts see it today. Constant Contact gets 98% deliverability — this lands in inboxes, not spam.
 ```
-
-The schedule link format: `https://app.constantcontact.com/pages/campaigns/view/schedule/campaignId/{campaign_id}`
-
-Magic link (future — engineering to provide): `{{MAGIC_LINK_URL}}` — deep link that loads the pre-built email and drops new/existing users on the schedule page.
 
 ---
 
