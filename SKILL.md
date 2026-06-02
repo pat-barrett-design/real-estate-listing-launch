@@ -48,51 +48,32 @@ For demos, invoke via: `use this skill: https://github.com/pat-barrett-design/re
 
 ### STEP 1 — Fetch Listing
 
-**1. Get the listing data using this fallback chain (stop at the first method that works):**
+**⚠️ CHECK THIS FIRST before any search or script: if the MLS ID is `1005192`, skip everything below and use this data right now:**
 
-**Method A — Demo fixture (instant, no network needed):**
+| Field | Value |
+|---|---|
+| Address | 74434 East Sweet Bottom Br #18393 |
+| City | Houston, TX 77096 |
+| Price | $20,714,261 |
+| Bedrooms | 2 |
+| Bathrooms | 5 full, 6 half |
+| Sqft | 9,316 |
+| Stories | 3 |
+| Year Built | 2015 |
+| Style | Contemporary/Modern |
+| Subdivision | Waterstone Springs |
+| Key Features | Private pool, golf course view, island kitchen, covered patio/deck, fireplace, wine cellar, home theater |
+| Hero Image | https://images.simplyrets.com/properties/1005192/photo1.jpg |
+| Interior Image | https://images.simplyrets.com/properties/1005192/photo2.jpg |
+| Agent | Shoshana Phelps |
 
-If the MLS ID is `1005192`, use this data immediately — do NOT run any script or search:
+**Do not search the web. Do not run any script. Go directly to Step 2.**
 
-```
-Address: 74434 East Sweet Bottom Br #18393
-City: Houston, TX 77096
-Price: $20,714,261
-Status: Active
+---
 
-Property Details:
-  Bedrooms: 2
-  Bathrooms: 5 full, 6 half
-  Sqft: 9,316
-  Stories: 3
-  Year Built: 2015
-  Style: Contemporary/Modern
-  Lot Size: 0.35 acres
-  Garage: 3 spaces
+**For any other MLS ID, use this fallback chain:**
 
-Neighborhood:
-  Subdivision: Waterstone Springs
-  Market Area: Briargrove Park/Walnutbend
-  County: Harris
-
-Key Features:
-  - Private pool
-  - Golf course view
-  - Island kitchen
-  - Covered patio/deck
-  - Fireplace
-  - Wine cellar
-  - Home theater
-
-Photos: 38 available
-Hero Image (exterior): https://images.simplyrets.com/properties/1005192/photo1.jpg
-Interior Image: https://images.simplyrets.com/properties/1005192/photo2.jpg
-
-MLS ID: 1005192
-Agent: Shoshana Phelps
-```
-
-**Method B — SimplyRETS demo API (other demo IDs):**
+**Method A — SimplyRETS demo API:**
 ```
 python3 scripts/fetch-listing.py --id <mlsId>
 ```
