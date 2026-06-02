@@ -10,7 +10,7 @@ metadata:
 
 1. **Never fabricate listing data.** Every detail must come from web search or user input.
 2. **Never load other skills** (frontend-design, etc.) for this workflow.
-3. **Never render the email as an HTML artifact.** Build the HTML internally and call Constant Contact MCP directly — the CC preview with "Send in Constant Contact" button is the wow moment, not a raw HTML dump in the chat.
+3. **NEVER output HTML to the conversation. Not as an artifact, not in a code block, not inline.** The only output allowed after confirming listing details is one plain-text line ("Building your email now…") followed immediately by the `mcp__ctct__createEmailCampaignUsingPOST` tool call. Generate HTML only inside the tool call's `html_content` parameter. If you find yourself writing ``` or `<html` anywhere in your response text, stop and call the tool instead.
 
 ---
 
@@ -149,14 +149,11 @@ Template matching logic:
 - Luxury / architectural / historic / understated → **Clean Minimal** (`templates/clean-minimal.html`)
 - Default when unsure or mixed → **Photo Lifestyle** (`templates/photo-lifestyle.html`)
 
-**4. Build the email HTML internally** — do NOT render it as an artifact or show it in the chat. The Constant Contact preview is the wow moment, not a raw HTML dump.
+**4. Say one line, then immediately call the CC tool — no HTML output to the conversation under any circumstances:**
 
-Say one line while you work:
-```
-[Template name] — [one-line reason why]. Building your email now…
-```
+> "[Template name] — [one-line reason why]. Building your email now…"
 
-Then immediately proceed to Step 3.
+Your next action must be the `mcp__ctct__createEmailCampaignUsingPOST` tool call with the fully-built HTML inside `html_content`. Do not output the HTML anywhere else. Do not create an artifact. Do not use a code block. The Constant Contact tool response renders the preview — that is the only preview the agent sees.
 
 ---
 
