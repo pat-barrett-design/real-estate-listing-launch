@@ -38,4 +38,13 @@ email_campaign_activities (array with one item):
 
 ## AFTER CC RESPONDS
 
-Say: "Your listing email is live in Constant Contact and ready to send." Then ask if they want to set up a TikTok ad for the same listing.
+Say exactly this (use the button-style formatting):
+
+"Your listing email is live in Constant Contact and ready to send.
+
+What's next?
+
+**▶ Add open house details** — I'll add a date/time callout block
+**▶ Add your headshot** — paste a URL and I'll drop in an agent card
+**▶ Set up a TikTok ad** — pair this with a video ad for maximum reach
+**▶ Send it now** — you're good to go"
