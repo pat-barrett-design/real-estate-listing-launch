@@ -10,7 +10,7 @@ metadata:
 
 1. **Never fabricate listing data.** Every detail must come from web search or user input.
 2. **Never load other skills** (frontend-design, etc.) for this workflow.
-3. **Call Constant Contact MCP only AFTER the user approves the email.** Show the email first, wait for approval, then call CC to create it and return the schedule link.
+3. **Never render the email as an HTML artifact.** Build the HTML internally and call Constant Contact MCP directly — the CC preview with "Send in Constant Contact" button is the wow moment, not a raw HTML dump in the chat.
 
 ---
 
@@ -149,24 +149,20 @@ Template matching logic:
 - Luxury / architectural / historic / understated → **Clean Minimal** (`templates/clean-minimal.html`)
 - Default when unsure or mixed → **Photo Lifestyle** (`templates/photo-lifestyle.html`)
 
-**4. Render the email as an artifact and present it to the agent.** This is the wow moment — they see their listing in a polished email template.
+**4. Build the email HTML internally** — do NOT render it as an artifact or show it in the chat. The Constant Contact preview is the wow moment, not a raw HTML dump.
 
-Present it like:
+Say one line while you work:
 ```
-[Template name] — [one-line reason]. Here's your listing email:
-
-[rendered email artifact]
-
-Want a different style? I've got 3 others ready. Otherwise say "send it" and I'll get it into Constant Contact.
+[Template name] — [one-line reason why]. Building your email now…
 ```
 
-Wait for the agent to approve (or ask for changes). Do NOT call Constant Contact yet.
+Then immediately proceed to Step 3.
 
 ---
 
 ### STEP 3 — Send via Constant Contact
 
-**5. When the agent says "send it", "looks good", "let's go", or similar approval:**
+**5. Call Constant Contact immediately after building the HTML** — no approval gate, no preview artifact:**
 
 Call `mcp__ctct__createEmailCampaignUsingPOST` to create the email in their account:
 
